@@ -1,0 +1,6 @@
+{
+  "name": "DMI TTS",
+  "country": ["DK"],
+  "render_readme": true,
+  "domains": ["sensor"]
+}
