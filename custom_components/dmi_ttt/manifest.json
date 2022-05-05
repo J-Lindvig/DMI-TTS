@@ -1,0 +1,11 @@
+{
+  "codeowners": ["@J-Lindvig"],
+  "config_flow": false,
+  "dependencies": [],
+  "documentation": "https://github.com/J-Lindvig/DMI-TTS",
+  "domain": "dmi_tts",
+  "iot_class": "cloud_polling",
+  "name": "DMI TTS",
+  "requirements": ["beautifulsoup4", "lxml"],
+  "version": "0.1"
+}
