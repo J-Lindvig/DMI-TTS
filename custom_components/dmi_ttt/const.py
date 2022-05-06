@@ -20,5 +20,3 @@ DMI_TTS_URLS = {
     "c4a99017f69e497a8c60707155749e06": "2614764",
     "a4ed4c9f12214fb2be5a523a35bc0c9e": "2614553",
 }
-
-DAY_KEYS = ["et", "to", "tre", "fire", "fem", "sekssyv"]

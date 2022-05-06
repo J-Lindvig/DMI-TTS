@@ -7,5 +7,5 @@
   "iot_class": "cloud_polling",
   "name": "DMI TTS",
   "requirements": ["beautifulsoup4", "lxml"],
-  "version": "0.1"
+  "version": "0.2"
 }

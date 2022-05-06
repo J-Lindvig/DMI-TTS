@@ -1,6 +1,4 @@
-import logging
 import requests
-import json
 
 from bs4 import BeautifulSoup as BS
 import re
@@ -9,9 +7,6 @@ from .const import (
     BASE_URL,
     DMI_TTS_URLS,
 )
-
-_LOGGER: logging.Logger = logging.getLogger(__package__)
-_LOGGER = logging.getLogger(__name__)
 
 
 class dmi_tts:
@@ -23,8 +18,7 @@ class dmi_tts:
         for unique_id in DMI_TTS_URLS:
             r = self._session.get(BASE_URL + DMI_TTS_URLS[unique_id])
             if r.status_code == 200:
-                json_r = r.json()
-                json_r = self._list2dict(json_r)
+                json_r = self._list2dict(r.json())
 
                 if "products" in json_r:
                     json_r["unique_id"] = unique_id
@@ -60,6 +54,8 @@ class dmi_tts:
                 "date": xml_soup.find("dato").text.rstrip("."),
                 "preface": "",
                 "summary": xml_soup.find("oversigt").text,
+                "uncertainty": xml_soup.find("usikkerhed").text,
+                "precipitation": xml_soup.find("nedboerskema").text,
                 "days": [],
             }
         )
@@ -85,6 +81,7 @@ class dmi_tts:
             {
                 "date": xml_soup.find("dato").text.rstrip("."),
                 "forecast": xml_soup.find("udsigt").text,
+                "risk_of_ice": xml_soup.find("glatfoerevarsel").text,
             }
         )
 

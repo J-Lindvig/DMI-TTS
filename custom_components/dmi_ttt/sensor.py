@@ -1,16 +1,13 @@
 from __future__ import annotations
-from html import entities
 
 import logging
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from homeassistant.const import ATTR_ATTRIBUTION
 from homeassistant.components.sensor import SensorEntity
-from homeassistant.core import HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 from .const import (
     CONF_DOMAIN,
@@ -65,12 +62,17 @@ class DMI_Land_Sensor(SensorEntity):
         self._name = forecast["name"]
         self._state = forecast["date"]
         self._unique_id = forecast["unique_id"]
+        self._icon = "mdi:calendar-today"
 
     @property
     def name(self) -> str:
         """Return the name of the sensor."""
         # return "Example Temperature"
         return self._name
+
+    @property
+    def icon(self):
+        return self._icon
 
     @property
     def state(self):
@@ -80,11 +82,12 @@ class DMI_Land_Sensor(SensorEntity):
     @property
     def extra_state_attributes(self):
         # Prepare a dictionary with a list of credits
-        attr = {}
-        attr["timestamp"] = self._data["timestamp"]
-        attr["forecast"] = self._data["forecast"]
-        attr[ATTR_ATTRIBUTION] = CREDITS
-
+        attr = {
+            "timestamp": self._data["timestamp"],
+            "forecast": self._data["forecast"],
+            "risk_of_ice": self._data["risk_of_ice"],
+            ATTR_ATTRIBUTION: CREDITS,
+        }
         return attr
 
     @property
@@ -110,12 +113,17 @@ class DMI_7_Days_Sensor(SensorEntity):
         self._name = forecast["name"]
         self._state = forecast["preface"]
         self._unique_id = forecast["unique_id"]
+        self._icon = "mdi:calendar-week"
 
     @property
     def name(self) -> str:
         """Return the name of the sensor."""
         # return "Example Temperature"
         return self._name
+
+    @property
+    def icon(self):
+        return self._icon
 
     @property
     def state(self):
@@ -125,13 +133,15 @@ class DMI_7_Days_Sensor(SensorEntity):
     @property
     def extra_state_attributes(self):
         # Prepare a dictionary with a list of credits
-        attr = {}
-        attr["timestamp"] = self._data["timestamp"]
-        attr["date"] = self._data["date"]
-        attr["summary"] = self._data["summary"]
-        attr["days"] = self._data["days"]
-        attr[ATTR_ATTRIBUTION] = CREDITS
-
+        attr = {
+            "timestamp": self._data["timestamp"],
+            "date": self._data["date"],
+            "summary": self._data["summary"],
+            "uncertainty": self._data["uncertainty"],
+            "precipitation": self._data["precipitation"],
+            "days": self._data["days"],
+            ATTR_ATTRIBUTION: CREDITS,
+        }
         return attr
 
     @property
@@ -157,12 +167,17 @@ class DMI_Region_Sensor(SensorEntity):
         self._name = forecast["name"]
         self._state = forecast["summary"]
         self._unique_id = forecast["unique_id"]
+        self._icon = "mdi:map-marker-radius"
 
     @property
     def name(self) -> str:
         """Return the name of the sensor."""
         # return "Example Temperature"
         return self._name
+
+    @property
+    def icon(self):
+        return self._icon
 
     @property
     def state(self):
@@ -172,12 +187,12 @@ class DMI_Region_Sensor(SensorEntity):
     @property
     def extra_state_attributes(self):
         # Prepare a dictionary with a list of credits
-        attr = {}
-        attr["timestamp"] = self._data["timestamp"]
-        attr["date"] = self._data["date"]
-        attr["forecast"] = self._data["forecast"]
-        attr[ATTR_ATTRIBUTION] = CREDITS
-
+        attr = {
+            "timestamp": self._data["timestamp"],
+            "date": self._data["date"],
+            "forecast": self._data["forecast"],
+            ATTR_ATTRIBUTION: CREDITS,
+        }
         return attr
 
     @property
