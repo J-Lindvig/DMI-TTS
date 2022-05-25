@@ -8,6 +8,7 @@ CREDITS = [
     {"Data provided by": "https://www.dmi.dk/"},
 ]
 
+# Key/Value, where the Key is used as a unique_id and the Value is the URL
 DMI_TTS_URLS = {
     "c96a82f103064a44bd9f953d64f54278": "forecast/land/Danmark",
     "9d0fe6ebe96c408aa7f0074f8d9e2f36": "forecast/land7/Danmark",
