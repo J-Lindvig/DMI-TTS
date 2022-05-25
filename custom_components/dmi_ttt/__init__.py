@@ -23,8 +23,7 @@ from .const import (
 @asyncio.coroutine
 def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
 
-    """Your controller/hub specific code."""
-    # Data that you want to share with your platforms
+    # Create a instance of the DMI TTS module and store it under the DOMAIN of the integration
     client = dmi_tts()
     hass.data[CONF_DOMAIN] = {CONF_CLIENT: client}
 
