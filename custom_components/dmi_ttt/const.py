@@ -8,7 +8,6 @@ CREDITS = [
     {"Data provided by": "https://www.dmi.dk/"},
 ]
 
-# Key/Value, where the Key is used as a unique_id and the Value is the URL
 DMI_TTS_URLS = {
     "c96a82f103064a44bd9f953d64f54278": "forecast/land/Danmark",
     "9d0fe6ebe96c408aa7f0074f8d9e2f36": "forecast/land7/Danmark",
@@ -21,3 +20,5 @@ DMI_TTS_URLS = {
     "c4a99017f69e497a8c60707155749e06": "2614764",
     "a4ed4c9f12214fb2be5a523a35bc0c9e": "2614553",
 }
+
+PREFIX = "Vejrudsigt "

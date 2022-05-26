@@ -59,7 +59,7 @@ class DMI_Land_Sensor(SensorEntity):
         self.hass = hass
         self._coordinator = coordinator
         self._data = forecast
-        self._name = forecast["name"]
+        self._name = hass.data[CONF_DOMAIN]["prefix"] + forecast["name"]
         self._state = forecast["date"]
         self._unique_id = forecast["unique_id"]
         self._icon = "mdi:calendar-today"
@@ -110,7 +110,7 @@ class DMI_7_Days_Sensor(SensorEntity):
         self.hass = hass
         self._coordinator = coordinator
         self._data = forecast
-        self._name = forecast["name"]
+        self._name = hass.data[CONF_DOMAIN]["prefix"] + forecast["name"]
         self._state = forecast["preface"]
         self._unique_id = forecast["unique_id"]
         self._icon = "mdi:calendar-week"
@@ -164,7 +164,7 @@ class DMI_Region_Sensor(SensorEntity):
         self.hass = hass
         self._coordinator = coordinator
         self._data = forecast
-        self._name = forecast["name"]
+        self._name = hass.data[CONF_DOMAIN]["prefix"] + forecast["name"]
         self._state = forecast["summary"]
         self._unique_id = forecast["unique_id"]
         self._icon = "mdi:map-marker-radius"

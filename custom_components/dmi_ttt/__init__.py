@@ -17,15 +17,25 @@ from .const import (
     CONF_DOMAIN,
     CONF_CLIENT,
     CONF_PLATFORM,
+    PREFIX,
 )
 
 
 @asyncio.coroutine
 def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
 
-    # Create a instance of the DMI TTS module and store it under the DOMAIN of the integration
+    # Test the config is not empty
+    conf = config.get(CONF_DOMAIN)
+    if conf is None:
+        return True
+
+    # Load variables from config or use a default
+    prefix = config[CONF_DOMAIN].get("prefix", PREFIX)
+
+    """Your controller/hub specific code."""
+    # Data that you want to share with your platforms
     client = dmi_tts()
-    hass.data[CONF_DOMAIN] = {CONF_CLIENT: client}
+    hass.data[CONF_DOMAIN] = {CONF_CLIENT: client, "prefix": prefix}
 
     # Add sensors
     hass.async_create_task(
