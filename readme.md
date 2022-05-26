@@ -7,4 +7,6 @@ For installation instructions [see this guide](https://hacs.xyz/docs/faq/custom_
 Add the following to your configuration.yaml
 ```yaml
 dmi_tts:
+  # Optional custom prefix, default prefix is "Vejrudsigt "
+  prefix: "DMI "
 ```
